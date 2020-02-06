@@ -1,3 +1,9 @@
 <span>{{ title }} app is running!</span>
-    <app-dashboard></app-dashboard>
-    <app-bitcoin-details></app-bitcoin-details>
+<nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/bitcoin-details">Bitcoin Details</a>
+    <a routerLink="/bitcoin-converter">Bitcoin Umrechner</a>
+    <a routerLink="/bitcoin-diagram">Bitcoin Diagramm</a>
+</nav>
+<router-outlet></router-outlet>
+
