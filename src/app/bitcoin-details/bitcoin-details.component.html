@@ -1,2 +1,6 @@
 <p>bitcoin-details works!</p>
-<p id="detailsContainer"></p>
+<p *ngFor="let data of details">{{data.titel}}
+    <br>{{data.value}}
+</p>
+
+

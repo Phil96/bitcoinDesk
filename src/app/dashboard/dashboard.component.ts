@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { TickerService } from "../ticker.service";
+
 
 @Component({
   selector: 'app-dashboard',
@@ -11,71 +12,45 @@ import { TestBed } from '@angular/core/testing';
 
 export class DashboardComponent implements OnInit {
 
-  data;
+  public ticker;
+  public cap;
+  public usd;
 
   test: Array<Object> = [];
-  constructor() { }
+  constructor(private tickerService: TickerService) { }
 
   ngOnInit() {
-
-    //let blob = await fetch('https://www.blockchain.com/ticker');
-
-    fetch('https://www.blockchain.com/ticker')
-      .then((response) => {
-        return response.json();
-
-      })
-      .then((myJson) => {
-        for (var prop in myJson) {
-          let row = document.createElement("tr");
-
-          let n1 = document.createElement("td");
-          let t1 = document.createTextNode(prop);
-          n1.appendChild(t1);
-          row.appendChild(n1);
-
-          let n2 = document.createElement("td");
-          let t2 = document.createTextNode(myJson[prop].buy);
-          n2.appendChild(t2);
-          row.appendChild(n2);
-
-          let n3 = document.createElement("td");
-          let t3 = document.createTextNode(myJson[prop].sell);
-          n3.appendChild(t3);
-          row.appendChild(n3);
-
-          //let node = document.createTextNode(prop + ": " + myJson[prop].buy + "||" + myJson[prop].sell);
-          //row.appendChild(node);
-
-          var element = document.getElementById("dashboardTable");
-          element.appendChild(row);
-          //console.log(myJson[prop]);
-        }
-
-
-        console.log(Object.keys(myJson).map(function (key) {
-          //test.push([key,myJson[key]]);
-          return [key, myJson[key]];
-        }));
-
-
-
-        //var data = JSON.parse(myJson);
-        //this.data = myJson;
-      });
-
-    this.loadData().then();
-
-    //console.log(this.data);
+    this.getTicker();
   }
 
-  async loadData() {
+  /*async loadData() {
     let response = await fetch('https://www.blockchain.com/ticker');
     let data = await response.json();
     //console.log(data);
     this.data = data.USD;
     return data;
+  } */
+
+  getMarketcap(){
+    this.tickerService.getMarketcap().subscribe(
+      data => {this.cap = data;}
+    );
   }
 
+  getTicker() {
+    this.tickerService.getTicker().subscribe(
+      data => {
+      this.ticker = data;
+      this.usd = data["USD"];
+      console.log(this.usd);
+        console.log(this.ticker);
+        for (let key in data) {
+          console.log(data[key]);
+        }
+      },
+      err => console.error(err),
+      () => console.log("ticker geladen")
+    );
+  }
 
 }

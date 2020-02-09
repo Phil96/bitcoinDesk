@@ -12,3 +12,14 @@
     </tbody>
 
 </table>
+
+<div *ngFor="let curr of tickerService.currencies" style="width: 20%; float: left;"><h2>{{curr}}</h2>
+    Einkauf: {{ticker[curr].buy}} {{ticker[curr].symbol}}
+       <br>Verkauf: {{ticker[curr].sell}} {{ticker[curr].symbol}}
+   </div>
+
+
+<div *ngIf="ticker"><h2>USD: </h2>
+ Einkauf: {{ticker["USD"].buy}} {{ticker["USD"].symbol}}
+    <br>Verkauf: {{ticker["USD"].sell}} {{ticker["USD"].symbol}}
+</div>

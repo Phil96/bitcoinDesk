@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TickerService } from "../ticker.service";
 
 @Component({
   selector: 'app-bitcoin-details',
@@ -7,75 +8,80 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BitcoinDetailsComponent implements OnInit {
 
-  details = {
-    marketcap: {
+  private details:Object = [
+    {
       titel: "Marktkapitalisierung",
-      url: "https://blockchain.info/q/marketcap"
+      value: ""
     },
-    totalbc: {
+    {
       titel: "Anzahl aller Bitcoins im Umlauf",
-      url: "https://blockchain.info/q/totalbc"
+      value: ""
     },
-    transactioncount: {
+    {
       titel: "Anzahl der Transaktionen in den letzten 24h",
-      url: "https://blockchain.info/q/24hrtransactioncount"
+      value: ""
     },
-    btcsent: {
+    {
       titel: "Anzahl gesendeter Bitcoin in den letzten 24h",
-      url: "https://blockchain.info/q/24hrbtcsent"
+      value: ""
     },
-    hashrate: {
+    {
       titel: "Aktuelle Hashrate",
-      url: "https://blockchain.info/q/hashrate"
+      value: ""
     },
-    getdifficulty: {
+    {
       titel: "Aktueller Schwierigkeitsgrad",
-      url: "https://blockchain.info/q/getdifficulty"
+      value: ""
     },
-  }
+  ]
 
-  constructor() { }
+  constructor(private tickerService:TickerService) { }
 
-  initDetails() {
-    for (var detail in this.details) {
-      console.log(this.details[detail]);
-      let titel = this.details[detail].titel;
-
-      fetch(this.details[detail].url)
-        .then((response) => {
-          return response.text();
-
-        })
-        .then((result) => {
-
-          let container = document.createElement("div");
-
-          let n1 = document.createElement("div");
-          let t1 = document.createTextNode(titel+": ");
-          n1.appendChild(t1);
-          container.appendChild(n1);
-
-          let n2 = document.createElement("div");
-          let t2 = document.createTextNode(result);
-          n2.appendChild(t2);
-          container.appendChild(n2);
-
-          //let node = document.createTextNode(prop + ": " + myJson[prop].buy + "||" + myJson[prop].sell);
-          //row.appendChild(node);
-
-          var element = document.getElementById("detailsContainer");
-          element.appendChild(container);
-
-        });
-    }
-
-
-
-  }
 
   ngOnInit() {
-    this.initDetails();
+    this.getMarketcap();
+    this.getTotalbc();
+    this.getTransactioncount();
+    this.getBtcsent();
+    this.getHashrate();
+    this.getDifficulty();
   }
+
+  getMarketcap(){
+    this.tickerService.getMarketcap().subscribe(
+      data => {this.details[0].value = data;}
+    );
+  }
+
+  getTotalbc(){
+    this.tickerService.getTotalbc().subscribe(
+      data => {this.details[1].value = data;}
+    );
+  }
+
+  getTransactioncount(){
+    this.tickerService.getTransactioncount().subscribe(
+      data => {this.details[2].value = data;}
+    );
+  }
+
+  getBtcsent(){
+    this.tickerService.getBtcsent().subscribe(
+      data => {this.details[3].value = data;}
+    );
+  }
+
+  getHashrate(){
+    this.tickerService.getHashrate().subscribe(
+      data => {this.details[4].value = data;}
+    );
+  }
+
+  getDifficulty(){
+    this.tickerService.getDifficulty().subscribe(
+      data => {this.details[5].value = data;}
+    );
+  }  
 
 
 
