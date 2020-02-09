@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule }    from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +11,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BitcoinDetailsComponent } from './bitcoin-details/bitcoin-details.component';
 import { BitcoinConverterComponent } from './bitcoin-converter/bitcoin-converter.component';
 import { BitcoinDiagramComponent } from './bitcoin-diagram/bitcoin-diagram.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyBitcoinsComponent } from './my-bitcoins/my-bitcoins.component';
+
 
 @NgModule({
   declarations: [
@@ -16,11 +22,16 @@ import { BitcoinDiagramComponent } from './bitcoin-diagram/bitcoin-diagram.compo
     NavbarComponent,
     BitcoinDetailsComponent,
     BitcoinConverterComponent,
-    BitcoinDiagramComponent
+    BitcoinDiagramComponent,
+    MyBitcoinsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
