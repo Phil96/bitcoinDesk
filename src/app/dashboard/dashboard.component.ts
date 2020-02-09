@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
 
   public ticker;
   public cap;
-  public myBitcoins;
+  public myBitcoins:number;
+  public coinsInEur:number;
 
   test: Array<Object> = [];
   constructor(private tickerService: TickerService) { 
@@ -43,6 +44,7 @@ export class DashboardComponent implements OnInit {
     this.tickerService.getTicker().subscribe(
       data => {
       this.ticker = data;
+      this.coinsInEur = this.myBitcoins * data["EUR"].last;
       },
       err => console.error(err),
       () => console.log("ticker geladen")

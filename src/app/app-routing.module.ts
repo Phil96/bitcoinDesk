@@ -14,7 +14,8 @@ const routes: Routes = [
   {path: "bitcoin-details",component:BitcoinDetailsComponent},
   {path: "bitcoin-converter",component:BitcoinConverterComponent},
   //{path: "bitcoin-diagram",component:BitcoinDiagramComponent},
-  {path:"my-bitcoins",component:MyBitcoinsComponent}
+  {path:"my-bitcoins",component:MyBitcoinsComponent},
+  { path: "", redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -1,4 +1,27 @@
-<p>my-bitcoins works!</p>
-<input [(ngModel)]="userInput" type="number"><br>
-<button (click)="addBitcoins()">Bitcoins hinzufügen</button><button (click)="deleteBitcoins()">Bitcoins löschen</button>
-<div>Aktuelles Guthaben: {{myBitcoins}} BTC</div>
+<h1>Meine Bitcoins</h1>
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <input [(ngModel)]="userInput" type="number" class="form-control">
+    </div>
+
+</div>
+<br>
+
+<div class="row">
+    <div class="col-md-2">
+        <button (click)="addBitcoins()" class="btn btn-default">Bitcoins hinzufügen</button>
+    </div>
+    <div class="col-md-2">
+        <button (click)="deleteBitcoins()" class="btn btn-default">Bitcoins löschen</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div>
+            <h3>Aktuelles Guthaben:</h3>
+        </div>
+        <div><h5>{{myBitcoins}} BTC</h5></div>
+    </div>
+</div>

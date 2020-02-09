@@ -1,21 +1,23 @@
-<p>dashboard works!</p>
-<table>
-    <thead>
-        <tr>
-            <th>Währung</th>
-            <th>Einkaufspreis</th>
-            <th>Verkauspreis</th>
-        </tr>   
-    </thead>
-    <tbody id="dashboardTable">
+<h1>Dashboard</h1>
+<br>
+<div class="row">
+    <div *ngFor="let curr of tickerService.currencies" class="col-md-2">
+        <div><h2>{{curr}}</h2>
+        <div>Einkauf: {{ticker[curr].buy}} {{ticker[curr].symbol}}</div>
+        <div>Verkauf: {{ticker[curr].sell}} {{ticker[curr].symbol}}</div>
+        <div>*Preis pro Bitcoin</div>
+    </div>
+        
+    </div>
+</div>
+<br>
+<div class="row">
 
-    </tbody>
+    <div class="col-md-4">
+        <h3>Aktuelles Guthaben:</h3>
+        <div><h5>{{myBitcoins}} BTC / {{coinsInEur}} {{ticker["EUR"].symbol}}</h5></div>
+    </div>
 
-</table>
 
-<div *ngFor="let curr of tickerService.currencies" style="width: 20%; float: left;"><h2>{{curr}}</h2>
-    Einkauf: {{ticker[curr].buy}} {{ticker[curr].symbol}}
-       <br>Verkauf: {{ticker[curr].sell}} {{ticker[curr].symbol}}
-   </div>
-   <br>
-   <div><h2>Aktuelles Guthaben:</h2> {{myBitcoins}} BTC</div>
+
+</div>

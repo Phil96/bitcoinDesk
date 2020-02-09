@@ -1,12 +1,30 @@
-<p>bitcoin-converter works!</p>
-
-<input [(ngModel)]="userInput">
-
-<select [(ngModel)]="selectedCurrency">
-    <option *ngFor="let curr of tickerService.currencies">{{curr}}</option>
-
-</select>
+<h1>Bitcoin Umrechner</h1>
 <br>
-<label>{{output}} BTC</label>
+<div class="row">
+    <div class="col-md-3">
+        <input [(ngModel)]="userInput" class="form-control">
+    </div>
+
+<div class="col-md-2"><select [(ngModel)]="selectedCurrency" class="form-control">
+        <option *ngFor="let curr of tickerService.currencies" class="divider">{{curr}}</option>
+
+    </select></div>
+    
+    <div class="col-md-3">
+        <button (click)="currencyConvert()" class="btn btn-default">Umrechnen</button>
+    </div>
+
+
+   
+
+
+</div>
 <br>
-<button (click)="currencyConvert()">Umrechnen</button>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-control">
+          <label class="">{{output}} BTC</label>  
+        </div>
+        
+    </div> 
+</div>
