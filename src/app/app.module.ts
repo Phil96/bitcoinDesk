@@ -12,6 +12,7 @@ import { BitcoinDetailsComponent } from './bitcoin-details/bitcoin-details.compo
 import { BitcoinConverterComponent } from './bitcoin-converter/bitcoin-converter.component';
 import { BitcoinDiagramComponent } from './bitcoin-diagram/bitcoin-diagram.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyBitcoinsComponent } from './my-bitcoins/my-bitcoins.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     BitcoinDetailsComponent,
     BitcoinConverterComponent,
-    BitcoinDiagramComponent
+    BitcoinDiagramComponent,
+    MyBitcoinsComponent
   ],
   imports: [
     BrowserModule,

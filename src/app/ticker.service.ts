@@ -79,6 +79,14 @@ export class TickerService {
       );
     }
 
+    getTransactionsPerDay():Observable<any>{
+      return this.http.get("https://api.blockchain.info/charts/n-transactions?format=json")
+      .pipe(
+        tap(_ => console.log('fetched data')),
+        catchError(this.handleError('error', []))
+      );
+    }
+
     private handleError<T> (operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
   
