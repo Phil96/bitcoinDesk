@@ -14,10 +14,12 @@ export class DashboardComponent implements OnInit {
 
   public ticker;
   public cap;
-  public usd;
+  public myBitcoins;
 
   test: Array<Object> = [];
-  constructor(private tickerService: TickerService) { }
+  constructor(private tickerService: TickerService) { 
+    this.myBitcoins = parseInt(localStorage.getItem("myBitcoins").valueOf());
+  }
 
   ngOnInit() {
     this.getTicker();
@@ -41,12 +43,6 @@ export class DashboardComponent implements OnInit {
     this.tickerService.getTicker().subscribe(
       data => {
       this.ticker = data;
-      this.usd = data["USD"];
-      console.log(this.usd);
-        console.log(this.ticker);
-        for (let key in data) {
-          console.log(data[key]);
-        }
       },
       err => console.error(err),
       () => console.log("ticker geladen")

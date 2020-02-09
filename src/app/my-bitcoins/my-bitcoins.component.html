@@ -1,1 +1,4 @@
 <p>my-bitcoins works!</p>
+<input [(ngModel)]="userInput" type="number"><br>
+<button (click)="addBitcoins()">Bitcoins hinzufügen</button><button (click)="deleteBitcoins()">Bitcoins löschen</button>
+<div>Aktuelles Guthaben: {{myBitcoins}} BTC</div>
